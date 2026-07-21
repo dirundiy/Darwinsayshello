@@ -469,6 +469,27 @@ details p + p{margin-top:14px}
   font-size:16px;
 }
 
+/* ===== APA REFERENCES (hanging indent) ===== */
+.references{
+  list-style:none;
+  margin:22px 0 0;
+  padding:0;
+}
+.references li{
+  padding-left:2.6em;
+  text-indent:-2.6em;
+  margin-bottom:16px;
+  font-size:15px;
+  line-height:1.7;
+}
+.references li:last-child{margin-bottom:0}
+.references a{
+  overflow-wrap:anywhere;
+  word-break:break-word;
+  text-decoration-thickness:1px;
+  text-underline-offset:2px;
+}
+
 /* ===== SOURCES ===== */
 ol.bibliography{padding-left:24px; margin-top:22px}
 ol.bibliography li{margin-bottom:12px; font-size:14px; line-height:1.6}
