@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quiz &mdash; Darwin's Five Claims</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-head">
+  <p class="tagline">A Digital Exhibit</p>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="theory-of-evolution.html">Theory of Evolution</a></li>
+    <li class="has-drop">
+      <a href="claims.html">Darwin's 5 Claims <span class="caret">&#9662;</span></a>
+      <ul class="drop">
+        <li><a href="claim-1.html">1 &middot; Nonconstancy of Species</a></li>
+        <li><a href="claim-2.html">2 &middot; Descent From a Common Ancestor</a></li>
+        <li><a href="claim-3.html">3 &middot; Gradual Evolution</a></li>
+        <li><a href="claim-4.html">4 &middot; Multiplication of Species</a></li>
+        <li><a href="claim-5.html">5 &middot; Natural Selection</a></li>
+      </ul>
+    </li>
+    <li><a href="case-study.html">Case Study</a></li>
+    <li><a href="classification.html">Classification</a></li>
+    <li><a href="quiz.html" class="current">Quiz</a></li>
+    <li><a href="sources.html">Sources</a></li>
+  </ul>
+</nav>
+
+<div class="page-head">
+  <div class="container">
+    <p class="eyebrow">Check Yourself</p>
+    <h1>Quiz</h1>
+    <p class="lead">Seven questions covering all five claims and the case study. Click an
+    answer to see if you got it right.</p>
+  </div>
+</div>
+
+<main>
+  <div class="container">
+    <div class="block">
+
+      <div id="quizBox"></div>
+      <p class="tally" id="tally">Answered 0 of 7.</p>
+
+      <div class="flip">
+        <a href="case-study.html">&larr; Case Study</a>
+        <span class="spacer"></span>
+        <a href="sources.html">Sources &rarr;</a>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>Darwin's Evolutionary Impact &middot; By Diya &amp; Ruchitha</p>
+  </div>
+</footer>
+
+<script>
+var questions = [
+  {
+    q: "1. When do the mutations that make bacteria resistant to an antibiotic happen?",
+    options: [
+      "Only after the antibiotic is used",
+      "Randomly, as small mistakes when bacteria reproduce",
+      "The bacteria choose to mutate when they need to"
+    ],
+    correct: 1,
+    explain: "When bacteria reproduce, small random changes called mutations can happen in their DNA. Sometimes a mutation helps a bacterium survive an antibiotic."
+  },
+  {
+    q: "2. What is horizontal gene transfer?",
+    options: [
+      "When bacteria pass resistance genes to each other",
+      "When bacteria pass genes down to their offspring",
+      "When an antibiotic changes a bacterium's DNA"
+    ],
+    correct: 0,
+    explain: "One bacterium can share a small piece of DNA that helps another bacterium survive an antibiotic. This can spread resistance quickly through the whole group."
+  },
+  {
+    q: "3. What is the relationship between humans and modern apes?",
+    options: [
+      "Humans evolved from the apes that are alive today",
+      "Humans and modern apes are not related at all",
+      "Humans and modern apes share an ancient common ancestor"
+    ],
+    correct: 2,
+    explain: "Darwin's second claim does not mean we came from modern apes living today. It means humans and modern apes share an ancient ancestor that lived millions of years ago."
+  },
+  {
+    q: "4. In the stickleback fish study, what did scientists find in the new freshwater populations?",
+    options: [
+      "The frequencies of many genes changed",
+      "The fish stopped reproducing entirely",
+      "The fish returned to the ocean"
+    ],
+    correct: 0,
+    explain: "Many of the same genetic changes were also found in older freshwater populations, which shows how inherited changes can build up as organisms adapt to a new environment."
+  },
+  {
+    q: "5. Why did apple maggot flies start mating mostly within their own groups?",
+    options: [
+      "A mountain range separated them",
+      "They became attracted to the smell of their own host fruit",
+      "Humans bred them separately"
+    ],
+    correct: 1,
+    explain: "The flies usually meet and mate near the fruit they use, so preferring apples or hawthorn created reproductive separation without any physical barrier."
+  },
+  {
+    q: "6. Why did dark peppered moths become more common during the Industrial Revolution?",
+    options: [
+      "The moths changed color to match the trees",
+      "Light moths moved to a different country",
+      "Pollution darkened tree surfaces, making dark moths harder for birds to see"
+    ],
+    correct: 2,
+    explain: "Light moths stood out more and were more likely to be eaten. After pollution decreased, lighter trees gave light moths better camouflage again."
+  },
+  {
+    q: "7. Why do some COVID-19 variants become more common than others?",
+    options: [
+      "They have mutations that help them spread, so they make more copies of themselves",
+      "Scientists design them in laboratories",
+      "Every variant spreads at exactly the same rate"
+    ],
+    correct: 0,
+    explain: "This is natural selection. The versions of the virus that are better able to spread have a greater chance of making more copies of themselves."
+  }
+];
+
+var box = document.getElementById("quizBox");
+var tally = document.getElementById("tally");
+var answered = 0, right = 0;
+
+questions.forEach(function(item){
+  var wrap = document.createElement("div");
+  wrap.className = "quiz-item";
+  var locked = false;
+
+  var prompt = document.createElement("p");
+  prompt.className = "prompt";
+  prompt.textContent = item.q;
+  wrap.appendChild(prompt);
+
+  var response = document.createElement("p");
+  response.className = "response";
+
+  item.options.forEach(function(option, i){
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.textContent = option;
+    btn.onclick = function(){
+      var all = wrap.getElementsByTagName("button");
+      for (var j = 0; j < all.length; j++){ all[j].className = ""; }
+
+      if (!locked){
+        locked = true;
+        answered++;
+        if (i === item.correct) right++;
+      }
+
+      if (i === item.correct){
+        btn.className = "correct";
+        response.textContent = "Correct. " + item.explain;
+      } else {
+        btn.className = "incorrect";
+        all[item.correct].className = "correct";
+        response.textContent = "Not quite. " + item.explain;
+      }
+
+      tally.textContent = "Answered " + answered + " of " + questions.length +
+        ". Got " + right + " right on the first try.";
+    };
+    wrap.appendChild(btn);
+  });
+
+  wrap.appendChild(response);
+  box.appendChild(wrap);
+});
+</script>
+<script src="nav.js"></script>
+
+</body>
+</html>
