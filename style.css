@@ -536,6 +536,12 @@ footer a{color:var(--green-ink)}
   border:2px solid var(--rose);
   box-shadow:0 12px 28px -16px rgba(63,92,71,.4);
 }
+/* small-source diagrams: never upscale past their native width */
+.figure-wide.natural img{
+  max-width:640px;
+  margin-left:auto;
+  margin-right:auto;
+}
 .figure-wide figcaption{
   margin-top:14px;
   font-size:14px;
