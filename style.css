@@ -1,0 +1,601 @@
+/* ===========================================
+   Darwin's Five Claims — shared stylesheet
+
+   Palette: Different Green And Pink
+   #588061  deep sage green
+   #869F77  soft olive green
+   #FDE9EA  palest pink
+   #F9E0DB  warm blush
+   #E7B5AC  dusty rose
+   =========================================== */
+
+:root{
+  /* palette */
+  --green:#588061;
+  --green-soft:#869F77;
+  --pink-pale:#FDE9EA;
+  --pink-warm:#F9E0DB;
+  --rose:#E7B5AC;
+
+  /* derived tones for small text and contrast */
+  --green-ink:#3F5C47;
+  --bg:#fffcfc;
+  --text:#33403a;
+  --soft:#6e7a70;
+  --line:#eddcd9;
+}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Segoe UI","Trebuchet MS",Candara,sans-serif;
+  font-size:17px;
+  line-height:1.75;
+}
+
+h1,h2,h3,h4{
+  font-family:Georgia,"Times New Roman",serif;
+  font-weight:normal;
+  margin:0;
+  line-height:1.3;
+}
+
+p{margin:0}
+img{max-width:100%; display:block}
+
+a{color:var(--green-ink)}
+a:hover{color:var(--green)}
+a:focus-visible,button:focus-visible,summary:focus-visible{
+  outline:2px solid var(--green);
+  outline-offset:3px;
+  border-radius:3px;
+}
+
+.container{max-width:730px; margin:0 auto; padding:0 26px}
+
+/* ===== SITE HEADER ===== */
+.site-head{
+  background:linear-gradient(165deg,var(--pink-pale) 0%,var(--pink-warm) 100%);
+  padding:18px 0 16px;
+  text-align:center;
+  border-bottom:1px solid var(--rose);
+}
+.site-head .tagline{
+  margin:0;
+  font-size:13px;
+  color:var(--soft);
+  letter-spacing:1.8px;
+  text-transform:uppercase;
+}
+
+/* ===== NAVIGATION ===== */
+nav{
+  background:#fff;
+  border-bottom:1px solid var(--line);
+  position:sticky;
+  top:0;
+  z-index:30;
+}
+nav ul{
+  list-style:none;
+  margin:0 auto;
+  padding:0;
+  max-width:900px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+nav a{
+  display:block;
+  padding:14px 18px;
+  color:var(--soft);
+  text-decoration:none;
+  font-size:14px;
+  letter-spacing:.6px;
+  border-bottom:2px solid transparent;
+}
+nav a:hover{color:var(--green-ink); background:var(--pink-pale)}
+nav a.current{color:var(--green-ink); border-bottom-color:var(--green)}
+
+/* ===== NAV DROPDOWN ===== */
+.has-drop{position:relative}
+.caret{
+  font-size:.65em;
+  margin-left:6px;
+  display:inline-block;
+  transition:transform .16s ease;
+}
+nav .drop{
+  position:absolute;
+  top:100%;
+  left:50%;
+  transform:translateX(-50%);
+  min-width:250px;
+  max-width:none;
+  margin:0;
+  padding:6px 0;
+  background:#fff;
+  border:1px solid var(--line);
+  border-top:2px solid var(--green);
+  border-radius:0 0 8px 8px;
+  box-shadow:0 10px 22px -10px rgba(63,92,71,.35);
+  flex-direction:column;
+  flex-wrap:nowrap;
+  justify-content:flex-start;
+  display:none;
+  z-index:40;
+}
+.has-drop:hover > .drop,
+.has-drop:focus-within > .drop,
+.has-drop.open > .drop{display:flex}
+.has-drop:hover .caret,
+.has-drop:focus-within .caret,
+.has-drop.open .caret{transform:rotate(180deg)}
+
+nav .drop li{width:100%}
+nav .drop a{
+  display:block;
+  width:100%;
+  padding:10px 20px;
+  text-align:left;
+  white-space:nowrap;
+  font-size:13.5px;
+  border-bottom:none;
+}
+nav .drop a:hover{background:var(--pink-pale); color:var(--green-ink)}
+nav .drop a.current{
+  background:var(--pink-pale);
+  color:var(--green-ink);
+  border-bottom:none;
+  font-weight:600;
+}
+
+/* ===== PAGE INTRO ===== */
+.page-head{padding:56px 0 10px; text-align:center}
+.page-head .eyebrow{
+  font-size:13px;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  color:var(--green);
+  margin-bottom:14px;
+}
+.page-head h1{font-size:38px; color:var(--green-ink)}
+.page-head .lead{
+  margin:20px auto 0;
+  max-width:560px;
+  color:var(--soft);
+  font-size:17px;
+}
+
+/* ===== SECTIONS ===== */
+main{padding-bottom:70px}
+.block{padding:44px 0}
+.block h2{
+  font-size:26px;
+  color:var(--green-ink);
+  margin-bottom:18px;
+}
+.block h3{
+  font-size:21px;
+  color:var(--green-ink);
+  margin:38px 0 14px;
+}
+.block p + p{margin-top:18px}
+
+.rule{
+  border:0;
+  border-top:1px solid var(--line);
+  margin:0;
+}
+
+/* ===== QUESTION CALLOUT ===== */
+.question{
+  background:var(--pink-warm);
+  border-left:3px solid var(--rose);
+  padding:20px 24px;
+  margin:34px 0;
+  font-size:17px;
+}
+.question span{
+  display:block;
+  font-size:12px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:#a06a5f;
+  margin-bottom:6px;
+}
+
+/* ===== EVIDENCE ===== */
+.evidence{
+  background:var(--pink-pale);
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:32px 34px;
+  margin:34px 0;
+}
+.evidence .num{
+  font-size:12px;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  color:var(--green);
+  display:block;
+  margin-bottom:10px;
+}
+.evidence h3{
+  font-size:22px;
+  color:var(--green-ink);
+  margin:0 0 18px;
+}
+.evidence ul{margin:0; padding-left:22px}
+.evidence li{margin-bottom:14px}
+.evidence li:last-child{margin-bottom:0}
+.evidence li::marker{color:var(--green-soft)}
+
+.why{
+  margin-top:26px;
+  padding:20px 24px;
+  background:#fff;
+  border-left:3px solid var(--green-soft);
+  border-radius:0 6px 6px 0;
+  font-size:16px;
+}
+.why b{
+  display:block;
+  color:var(--green);
+  font-size:12px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:8px;
+  font-weight:600;
+}
+.source{
+  margin-top:20px;
+  font-size:13px;
+  color:var(--soft);
+  font-style:italic;
+}
+
+/* ===== CLAIM INDEX CARDS ===== */
+.claim-list{
+  list-style:none;
+  margin:44px 0 0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+.claim-list a{
+  display:block;
+  background:var(--pink-pale);
+  border:1px solid var(--line);
+  border-left:4px solid var(--green-soft);
+  border-radius:8px;
+  padding:28px 32px;
+  text-decoration:none;
+  color:var(--text);
+}
+.claim-list a:hover{
+  background:var(--pink-warm);
+  border-left-color:var(--green);
+}
+.claim-list .n{
+  font-size:12px;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  color:var(--green);
+  display:block;
+  margin-bottom:8px;
+}
+.claim-list h2{
+  font-family:Georgia,serif;
+  font-size:24px;
+  color:var(--green-ink);
+  margin:0 0 10px;
+}
+.claim-list p{font-size:16px; color:var(--soft)}
+.claim-list .go{
+  display:block;
+  margin-top:14px;
+  font-size:14px;
+  color:var(--green);
+  letter-spacing:.5px;
+}
+
+/* ===== TIMELINE ===== */
+.timeline{list-style:none; margin:36px 0 0; padding:0}
+.timeline li{
+  padding:26px 0;
+  border-bottom:1px solid var(--line);
+}
+.timeline li:first-child{border-top:1px solid var(--line)}
+.timeline .year{
+  display:block;
+  font-family:Georgia,serif;
+  font-size:20px;
+  color:var(--green);
+  margin-bottom:8px;
+}
+.timeline p{font-size:16px}
+
+/* ===== CARDS GRID ===== */
+.cards{
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+  margin-top:32px;
+}
+.card{
+  flex:1 1 280px;
+  background:var(--pink-pale);
+  border:1px solid var(--line);
+  border-top:4px solid var(--green-soft);
+  border-radius:8px;
+  padding:26px 28px;
+}
+.card h3{
+  font-size:20px;
+  color:var(--green-ink);
+  margin:0 0 14px;
+}
+.card ul{margin:0; padding-left:20px; font-size:15px}
+.card li{margin-bottom:9px}
+.card li:last-child{margin-bottom:0}
+.card li::marker{color:var(--green-soft)}
+
+/* ===== DIAGRAM ===== */
+.diagram{
+  background:var(--pink-pale);
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:34px 30px;
+  margin:36px 0;
+  text-align:center;
+}
+.diagram svg{max-width:100%; height:auto; margin:0 auto}
+.diagram .caption{
+  font-size:14px;
+  color:var(--soft);
+  margin-top:22px;
+  text-align:left;
+}
+
+/* ===== NUMBERED STEPS ===== */
+ol.steps{padding-left:24px; margin:26px 0 0}
+ol.steps li{margin-bottom:20px}
+ol.steps li::marker{color:var(--green)}
+ol.steps strong{color:var(--green-ink)}
+
+/* ===== DROPDOWN ===== */
+details{
+  background:var(--pink-warm);
+  border-left:3px solid var(--green-soft);
+  border-radius:0 8px 8px 0;
+  padding:22px 26px;
+  margin:34px 0;
+}
+summary{
+  cursor:pointer;
+  color:var(--green-ink);
+  font-family:Georgia,serif;
+  font-size:18px;
+}
+details p{margin-top:16px; font-size:16px}
+details p + p{margin-top:14px}
+
+/* ===== QUIZ ===== */
+.quiz-item{margin-bottom:46px}
+.quiz-item .prompt{
+  font-family:Georgia,serif;
+  font-size:20px;
+  color:var(--green-ink);
+  margin-bottom:18px;
+}
+.quiz-item button{
+  display:block;
+  width:100%;
+  text-align:left;
+  font-family:inherit;
+  font-size:16px;
+  line-height:1.6;
+  color:var(--text);
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:6px;
+  padding:15px 20px;
+  margin-bottom:10px;
+  cursor:pointer;
+}
+.quiz-item button:hover{border-color:var(--green-soft); background:var(--pink-pale)}
+.quiz-item button.correct{
+  background:#eef3ec;
+  border-color:var(--green);
+  color:var(--green-ink);
+}
+.quiz-item button.incorrect{
+  background:var(--pink-warm);
+  border-color:var(--rose);
+  color:#8a5a51;
+}
+.quiz-item .response{
+  font-size:15px;
+  color:var(--soft);
+  margin-top:14px;
+  min-height:20px;
+}
+.tally{
+  margin-top:16px;
+  padding:22px 26px;
+  background:var(--pink-warm);
+  border-left:3px solid var(--rose);
+  font-size:16px;
+}
+
+/* ===== SOURCES ===== */
+ol.bibliography{padding-left:24px; margin-top:22px}
+ol.bibliography li{margin-bottom:12px; font-size:14px; line-height:1.6}
+ol.bibliography li::marker{color:var(--green-soft)}
+ol.bibliography a{
+  overflow-wrap:anywhere;
+  word-break:break-word;
+  text-decoration-thickness:1px;
+  text-underline-offset:2px;
+}
+
+/* ===== PAGE FLIP LINKS ===== */
+.flip{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+  padding:38px 0 0;
+  border-top:1px solid var(--line);
+  margin-top:50px;
+  font-size:15px;
+}
+.flip a{text-decoration:none}
+.flip a:hover{text-decoration:underline}
+.flip .spacer{flex:1}
+
+/* ===== FOOTER ===== */
+footer{
+  background:var(--pink-pale);
+  border-top:1px solid var(--rose);
+  padding:34px 0;
+  text-align:center;
+  font-size:14px;
+  color:var(--soft);
+}
+footer a{color:var(--green-ink)}
+
+/* ===== HOMEPAGE HERO TITLE ===== */
+.hero{
+  background:var(--pink-pale);
+  border-bottom:1px solid var(--rose);
+  padding:70px 0 62px;
+  text-align:center;
+}
+.hero-title{
+  font-family:Poppins,Montserrat,"Century Gothic","Segoe UI",Tahoma,sans-serif;
+  font-weight:800;
+  text-transform:uppercase;
+  font-size:clamp(2.2rem,8.5vw,4.4rem);
+  line-height:1.03;
+  letter-spacing:-.01em;
+  color:#131313;
+  max-width:13ch;
+  margin:0 auto;
+  text-wrap:balance;
+}
+.byline{
+  display:inline-block;
+  margin-top:38px;
+  padding:11px 28px;
+  border:1.5px solid #131313;
+  border-radius:999px;
+  font-family:Poppins,Montserrat,"Segoe UI",sans-serif;
+  font-weight:400;
+  font-size:1rem;
+  color:#131313;
+}
+
+@media (max-width:640px){
+  .hero{padding:46px 0 42px}
+  .byline{margin-top:28px; font-size:.92rem; padding:9px 22px}
+}
+
+/* ===== PORTRAIT ===== */
+.portrait{
+  margin:0 0 46px;
+  text-align:center;
+}
+.fig-label{
+  font-size:12px;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  color:var(--green);
+  margin-bottom:14px;
+}
+
+/* ===== WIDE FIGURE (diagrams, infographics) ===== */
+.figure-wide{
+  margin:38px 0 42px;
+  text-align:center;
+}
+.figure-wide img,
+.figure-wide svg{
+  display:block;
+  width:100%;
+  height:auto;
+  background:#fff;
+  border-radius:18px;
+  border:2px solid var(--rose);
+  box-shadow:0 12px 28px -16px rgba(63,92,71,.4);
+}
+.figure-wide figcaption{
+  margin-top:14px;
+  font-size:14px;
+  color:var(--soft);
+  text-align:center;
+}
+.portrait img{
+  width:100%;
+  max-width:300px;
+  height:auto;
+  margin:0 auto;
+  border-radius:18px;
+  border:1px solid var(--line);
+  box-shadow:0 12px 28px -14px rgba(63,92,71,.45);
+}
+.portrait figcaption{
+  margin-top:14px;
+  font-size:14px;
+  color:var(--soft);
+}
+
+/* ===== EMPTY TEMPLATE FIELDS =====
+   Blank spots keep their height and show a faint dashed line
+   so the layout holds until you type into them. */
+.evidence h3:empty,
+.claim-list h2:empty,
+.page-head h1:empty{
+  min-height:1.3em;
+  border-bottom:1px dashed var(--rose);
+}
+.evidence li:empty{
+  min-height:1.5em;
+  border-bottom:1px dashed var(--rose);
+}
+.evidence p:empty,
+.why p:empty,
+.question p:empty,
+.claim-list p:empty,
+.block > p:empty,
+.lead:empty{
+  min-height:1.6em;
+  border-bottom:1px dashed var(--rose);
+}
+.block > p:empty{margin-top:14px}
+
+/* claim cards get a tiny nudge on hover */
+.claim-list a{transition:transform .18s ease, background .18s ease}
+.claim-list a:hover{transform:translateX(4px)}
+
+@media (prefers-reduced-motion:reduce){
+  .claim-list a:hover{transform:none}
+}
+
+/* ===== MOBILE ===== */
+@media (max-width:640px){
+  body{font-size:16px}
+  .page-head{padding-top:40px}
+  .page-head h1{font-size:29px}
+  .block h2{font-size:22px}
+  .evidence{padding:24px 22px}
+  nav a{padding:12px 14px; font-size:13px}
+  .container{padding:0 20px}
+}
