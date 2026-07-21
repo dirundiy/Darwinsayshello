@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body{
+    margin:0; padding:16px;
+    background:#ffffff; color:#242828;
+    font-family:"Trebuchet MS",Verdana,Geneva,sans-serif;
+    font-size:16px; line-height:1.6;
+  }
+  h2{font-size:22px; color:#2e7d52; border-bottom:3px solid #2e7d52; padding-bottom:6px; margin:0 0 6px}
+  .intro{font-size:15px; color:#555c5c; margin:0 0 22px}
+  .q{margin-bottom:26px}
+  .qtext{font-weight:bold; margin:0 0 9px}
+  button{
+    display:block; width:100%; text-align:left;
+    font-family:inherit; font-size:15px; color:#242828;
+    background:#f7f9f7; border:1px solid #d2dbd4;
+    border-radius:4px; padding:9px 12px; margin-bottom:6px; cursor:pointer;
+  }
+  button:hover{border-color:#2e7d52}
+  button.correct{background:#dff0e4; border-color:#2e7d52; color:#1c4d33}
+  button.incorrect{background:#f7e4e2; border-color:#b5544a; color:#7a2f28}
+  button:focus-visible{outline:2px solid #2e7d52; outline-offset:2px}
+  .answer{font-size:14px; color:#555c5c; margin:6px 0 0; min-height:18px}
+  .score{
+    margin-top:10px; padding:12px 14px; background:#f0f3e2;
+    border-left:4px solid #d8c98a; font-size:15px;
+  }
+</style>
+</head>
+<body>
+
+<h2>Quick Quiz</h2>
+<p class="intro">Five questions on the things people most often get wrong about evolution. Click an answer to check it.</p>
+
+<div id="quizBox"></div>
+<p class="score" id="score">Answered 0 of 5.</p>
+
+<script>
+var questions = [
+  {
+    q: "1. A patient takes antibiotics, and the bacteria that survive are all resistant. What happened?",
+    options: [
+      "The antibiotic caused the bacteria to mutate and become resistant",
+      "A few resistant bacteria already existed, and the antibiotic killed all the rest",
+      "The bacteria adapted on purpose because they needed to survive"
+    ],
+    correct: 1,
+    explain: "The mutations were already there before the antibiotic showed up. The antibiotic is a filter, not a cause. This is probably the most common misunderstanding about evolution."
+  },
+  {
+    q: "2. Humans and chimps share about 98.8% of their DNA. What does that show?",
+    options: [
+      "Humans evolved from modern chimpanzees",
+      "It's a coincidence, since both are mammals",
+      "Both species came from a shared ancestor around 6 to 7 million years ago"
+    ],
+    correct: 2,
+    explain: "Neither one came from the other. They're two branches off the same ancestor, and how different the DNA is tells you roughly when they split."
+  },
+  {
+    q: "3. What discovery would most seriously disprove common ancestry?",
+    options: [
+      "A rabbit fossil in Precambrian rock, hundreds of millions of years too early",
+      "An animal with a really complicated eye",
+      "Two unrelated species that look almost the same"
+    ],
+    correct: 0,
+    explain: "Complicated organs and look-alike species are both expected under evolution. A mammal in Precambrian rock would break the whole order of the tree. A scientist named J.B.S. Haldane famously gave this exact answer."
+  },
+  {
+    q: "4. Apple maggot flies are splitting into two groups with no mountain or river separating them. How?",
+    options: [
+      "They can't, speciation always needs a physical barrier",
+      "They mate on the same fruit they lay eggs on, so picking a fruit separates them",
+      "They decided to become a new species"
+    ],
+    correct: 1,
+    explain: "Behavior is doing the job geography usually does. Apples and hawthorns also ripen at different times, so the two groups barely even breed at the same time of year."
+  },
+  {
+    q: "5. Why did the three-domain system replace the five-kingdom system?",
+    options: [
+      "Better microscopes showed new structures nobody had seen",
+      "RNA sequencing showed archaea are as different from bacteria as bacteria are from us",
+      "Scientists wanted a simpler system with fewer groups"
+    ],
+    correct: 1,
+    explain: "Archaea and bacteria look basically identical under a microscope. Only the genetic sequences showed the split, which is exactly why classification now follows ancestry instead of appearance."
+  }
+];
+
+var box = document.getElementById("quizBox");
+var scoreEl = document.getElementById("score");
+var answered = 0, right = 0;
+
+questions.forEach(function(item){
+  var div = document.createElement("div");
+  div.className = "q";
+  var done = false;
+
+  var text = document.createElement("p");
+  text.className = "qtext";
+  text.textContent = item.q;
+  div.appendChild(text);
+
+  var answer = document.createElement("p");
+  answer.className = "answer";
+
+  item.options.forEach(function(option, i){
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.textContent = option;
+    btn.onclick = function(){
+      var all = div.getElementsByTagName("button");
+      for (var j = 0; j < all.length; j++){ all[j].className = ""; }
+
+      if (!done){
+        done = true;
+        answered++;
+        if (i === item.correct) right++;
+      }
+
+      if (i === item.correct){
+        btn.className = "correct";
+        answer.textContent = "Correct! " + item.explain;
+      } else {
+        btn.className = "incorrect";
+        all[item.correct].className = "correct";
+        answer.textContent = "Not quite. " + item.explain;
+      }
+
+      scoreEl.textContent = "Answered " + answered + " of 5. Got " +
+        right + " right on the first try.";
+    };
+    div.appendChild(btn);
+  });
+
+  div.appendChild(answer);
+  box.appendChild(div);
+});
+</script>
+
+</body>
+</html>

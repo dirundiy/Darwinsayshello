@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Darwin's Five Claims — Biology Project</title>
+
+<style>
+:root{
+  --bg:#ffffff;
+  --band:#eef4ef;
+  --box:#f7f9f7;
+  --text:#242828;
+  --soft:#555c5c;
+  --line:#d2dbd4;
+  --green:#2e7d52;
+  --greenDark:#215c3c;
+  --yellow:#f0f3e2;
+  --yellowLine:#d8c98a;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Trebuchet MS",Verdana,Geneva,sans-serif;
+  font-size:16px;
+  line-height:1.6;
+}
+h1,h2,h3,h4{margin:0; line-height:1.25}
+p{margin:0}
+img{max-width:100%}
+a{color:var(--green)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--green); outline-offset:2px}
+
+.container{max-width:880px; margin:0 auto; padding:0 20px}
+
+/* ===== HEADER ===== */
+.top{background:var(--green); color:#fff; padding:44px 0 38px; text-align:center}
+.top h1{font-size:36px; margin-bottom:10px}
+.top .sub{font-size:17px; opacity:.92; max-width:600px; margin:0 auto}
+.top .byline{margin-top:18px; font-size:13px; opacity:.8}
+
+/* ===== NAV MENU ===== */
+.menu{background:var(--greenDark); position:sticky; top:0; z-index:20}
+.menu ul{
+  list-style:none; margin:0 auto; padding:0;
+  display:flex; flex-wrap:wrap; justify-content:center; gap:2px;
+  max-width:880px;
+}
+.menu a{
+  display:block; color:#fff; text-decoration:none;
+  font-size:13px; padding:10px 12px;
+}
+.menu a:hover{background:rgba(255,255,255,.15)}
+
+/* ===== SECTIONS ===== */
+section{padding:38px 0; border-bottom:1px solid var(--line)}
+section h2{
+  font-size:25px; color:var(--green);
+  border-bottom:3px solid var(--green); padding-bottom:6px; margin-bottom:6px;
+}
+.question{
+  background:var(--yellow); border-left:4px solid var(--yellowLine);
+  padding:11px 14px; margin:16px 0 22px; font-size:15px;
+}
+.question b{color:var(--text)}
+.intro-p{margin-top:14px}
+
+/* ===== EVIDENCE BOXES ===== */
+.ev{
+  background:var(--box); border:1px solid var(--line); border-radius:4px;
+  padding:16px 18px; margin-bottom:18px;
+}
+.ev h3{font-size:18px; color:var(--greenDark); margin-bottom:4px}
+.ev .label{
+  display:inline-block; font-size:11px; letter-spacing:.5px; text-transform:uppercase;
+  color:#fff; background:var(--green); padding:2px 8px; border-radius:3px; margin-bottom:8px;
+}
+.ev ul{margin:10px 0 0; padding-left:20px}
+.ev li{margin-bottom:7px}
+.why{
+  margin-top:13px; padding:10px 13px;
+  background:var(--bg); border-left:4px solid var(--green); font-size:15px;
+}
+.why b{color:var(--green)}
+.src{margin-top:10px; font-size:12px; color:var(--soft); font-style:italic}
+
+/* ===== TIMELINE ===== */
+.tl{list-style:none; margin:0; padding:0}
+.tl li{padding:11px 0; border-bottom:1px dotted var(--line); display:flex; gap:16px; flex-wrap:wrap}
+.tl .yr{font-weight:bold; color:var(--green); min-width:80px}
+.tl .txt{flex:1; min-width:240px; font-size:15px}
+
+/* ===== DIAGRAMS ===== */
+.diagram{
+  background:var(--box); border:1px solid var(--line); border-radius:4px;
+  padding:18px; margin:20px 0; text-align:center;
+}
+.diagram svg{max-width:100%; height:auto}
+.cap{font-size:13px; color:var(--soft); margin-top:10px; text-align:left}
+
+/* ===== IMAGE SLOTS ===== */
+.imgbox{
+  background:var(--box); border:1px dashed var(--line); border-radius:4px;
+  padding:14px; margin:20px 0;
+}
+.imgbox img{border-radius:3px; display:block; margin:0 auto}
+.imgbox .cap{text-align:center}
+
+/* ===== CARDS ===== */
+.cards{display:flex; flex-wrap:wrap; gap:14px; margin-top:18px}
+.card{
+  flex:1 1 240px; background:var(--box);
+  border:1px solid var(--line); border-top:5px solid var(--green);
+  border-radius:4px; padding:14px 16px;
+}
+.card h4{font-size:18px; color:var(--greenDark); margin-bottom:8px}
+.card ul{margin:0; padding-left:18px; font-size:14px}
+.card li{margin-bottom:5px}
+
+.subhead{margin-top:26px; font-size:19px; color:var(--greenDark)}
+
+/* ===== STEPS ===== */
+ol.steps{padding-left:22px; margin:14px 0 0}
+ol.steps li{margin-bottom:11px}
+
+/* ===== DROPDOWNS ===== */
+details{
+  background:var(--box); border:1px solid var(--line); border-radius:4px;
+  padding:11px 15px; margin:16px 0;
+}
+summary{cursor:pointer; font-weight:bold; color:var(--green); font-size:15px}
+details p{margin-top:9px; font-size:15px}
+
+/* ===== QUIZ ===== */
+.q{margin-bottom:26px}
+.q p.qtext{font-weight:bold; margin-bottom:9px}
+.q button{
+  display:block; width:100%; text-align:left;
+  font-family:inherit; font-size:15px; color:var(--text);
+  background:var(--box); border:1px solid var(--line);
+  border-radius:4px; padding:9px 12px; margin-bottom:6px; cursor:pointer;
+}
+.q button:hover{border-color:var(--green)}
+.q button.correct{background:#dff0e4; border-color:var(--green); color:#1c4d33}
+.q button.incorrect{background:#f7e4e2; border-color:#b5544a; color:#7a2f28}
+.answer{font-size:14px; color:var(--soft); margin-top:6px; min-height:18px}
+.score{
+  margin-top:10px; padding:12px 14px; background:var(--yellow);
+  border-left:4px solid var(--yellowLine); font-size:15px;
+}
+
+/* ===== SOURCES ===== */
+ol.bib{padding-left:22px; font-size:14px}
+ol.bib li{margin-bottom:9px}
+
+footer{padding:26px 0 40px; font-size:13px; color:var(--soft); text-align:center}
+
+@media (max-width:620px){
+  .top h1{font-size:27px}
+  section h2{font-size:21px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="top">
+  <div class="container">
+    <h1>Darwin's Five Claims</h1>
+    <p class="sub">Why Darwin's ideas from 1859 still explain what's happening in hospitals, coral reefs, and even cities today.</p>
+    <p class="byline">Biology &middot; Performance Assessment &middot; Summer 2026<br>By: [add your name here]</p>
+  </div>
+</header>
+
+<!-- ============ NAV ============ -->
+<nav class="menu">
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#timeline">Darwin's Story</a></li>
+    <li><a href="#claim1">Claim 1</a></li>
+    <li><a href="#claim2">Claim 2</a></li>
+    <li><a href="#claim3">Claim 3</a></li>
+    <li><a href="#claim4">Claim 4</a></li>
+    <li><a href="#claim5">Claim 5</a></li>
+    <li><a href="#casestudy">Case Study</a></li>
+    <li><a href="#classification">Classification</a></li>
+    <li><a href="#quiz">Quiz</a></li>
+    <li><a href="#sources">Sources</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <h2>About This Exhibit</h2>
+  <p class="intro-p">Charles Darwin published <em>On the Origin of Species</em> in 1859. He didn't know about DNA, genes, or mutations, because none of that had been discovered yet. He was working from fossils, bird beaks, barnacles, and pigeons he bred in his own backyard.</p>
+  <p class="intro-p">What's amazing is that everything scientists learned after him ended up backing him up. His ideas are usually broken into five claims, and this website goes through all five with three pieces of evidence each. I tried to use a mix of old evidence Darwin would have known about and new evidence from the last few years.</p>
+  <p class="intro-p">There's also a case study on how animals living in cities are evolving right now, a section on how scientists classify new species today, and a quiz at the bottom if you want to test yourself.</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 620 200" role="img" aria-label="Diagram showing Darwin's five claims branching out from the theory of evolution">
+      <rect x="215" y="8" width="190" height="34" rx="4" fill="none" stroke="currentColor" stroke-width="2"/>
+      <text x="310" y="30" text-anchor="middle" font-family="Trebuchet MS, sans-serif" font-size="15" fill="currentColor">Theory of Evolution</text>
+      <line x1="310" y1="42" x2="310" y2="62" stroke="currentColor" stroke-width="2"/>
+      <line x1="65" y1="62" x2="555" y2="62" stroke="currentColor" stroke-width="2"/>
+      <line x1="65" y1="62" x2="65" y2="86" stroke="currentColor" stroke-width="2"/>
+      <line x1="187" y1="62" x2="187" y2="86" stroke="currentColor" stroke-width="2"/>
+      <line x1="310" y1="62" x2="310" y2="86" stroke="currentColor" stroke-width="2"/>
+      <line x1="433" y1="62" x2="433" y2="86" stroke="currentColor" stroke-width="2"/>
+      <line x1="555" y1="62" x2="555" y2="86" stroke="currentColor" stroke-width="2"/>
+      <g font-family="Trebuchet MS, sans-serif" font-size="12" fill="currentColor" text-anchor="middle">
+        <rect x="12" y="86" width="106" height="72" rx="4" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <text x="65" y="106">1. Species</text><text x="65" y="122">change over</text><text x="65" y="138">time</text>
+        <rect x="134" y="86" width="106" height="72" rx="4" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <text x="187" y="106">2. Common</text><text x="187" y="122">ancestors</text>
+        <rect x="257" y="86" width="106" height="72" rx="4" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <text x="310" y="106">3. Change is</text><text x="310" y="122">gradual</text>
+        <rect x="380" y="86" width="106" height="72" rx="4" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <text x="433" y="106">4. New species</text><text x="433" y="122">form</text>
+        <rect x="502" y="86" width="106" height="72" rx="4" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <text x="555" y="106">5. Natural</text><text x="555" y="122">selection</text>
+      </g>
+      <text x="310" y="185" text-anchor="middle" font-family="Trebuchet MS, sans-serif" font-size="12" fill="currentColor" opacity=".75">All five claims work together. Natural selection is the mechanism that drives the other four.</text>
+    </svg>
+    <p class="cap">Darwin's five claims. They're separate ideas, but they connect: natural selection causes the change, the change adds up gradually, populations split into new species, and everything traces back to shared ancestors.</p>
+  </div>
+
+  <!-- IMAGE SLOT: Darwin's 1837 "I think" tree sketch. Search Wikimedia Commons for
+       "Darwin Tree of Life 1837". Save the image next to this file, then set src below. -->
+  <div class="imgbox">
+    <img src="images/darwin-tree-sketch.jpg" alt="Darwin's 1837 notebook sketch of a branching tree with the words I think written above it">
+    <p class="cap">Darwin's first evolutionary tree, drawn in his notebook in 1837 under the words "I think." Image: Wikimedia Commons.</p>
+  </div>
+</section>
+
+<!-- ============ TIMELINE ============ -->
+<section id="timeline">
+  <h2>Darwin's Story</h2>
+  <p>It took Darwin almost 30 years between getting back from his voyage and publishing his book. He kept collecting evidence because he knew how controversial it was going to be.</p>
+  <ul class="tl">
+    <li><span class="yr">1831</span><span class="txt">Darwin leaves England on the HMS Beagle at age 22. He was supposed to be a companion for the captain, not even the official scientist.</span></li>
+    <li><span class="yr">1835</span><span class="txt">He reaches the Gal&aacute;pagos Islands and collects finches and tortoises. He didn't realize how important they were at the time, and he didn't even label which island most of them came from.</span></li>
+    <li><span class="yr">1837</span><span class="txt">A bird expert tells Darwin the finches are actually separate species. In his notebook Darwin draws a branching tree and writes "I think" above it. That sketch is basically the whole theory.</span></li>
+    <li><span class="yr">1838</span><span class="txt">He reads an essay by Thomas Malthus about how populations grow faster than the food supply. That gives him the missing piece: most offspring die, so whichever ones have an advantage are the ones that survive.</span></li>
+    <li><span class="yr">1846&ndash;1854</span><span class="txt">Darwin spends eight straight years studying barnacles. This sounds boring but it showed him how much variation exists inside a single species.</span></li>
+    <li><span class="yr">1858</span><span class="txt">Alfred Russel Wallace mails Darwin an essay with the exact same idea. Two people figuring it out separately is a good sign the idea actually follows from the evidence.</span></li>
+    <li><span class="yr">1859</span><span class="txt"><em>On the Origin of Species</em> is published. All 1,250 copies sell out the first day.</span></li>
+    <li><span class="yr">1953+</span><span class="txt">DNA's structure is discovered, and later genetic sequencing. Darwin never knew any of this existed, but it all confirmed what he said.</span></li>
+  </ul>
+</section>
+
+<!-- ============ CLAIM 1 ============ -->
+<section id="claim1">
+  <h2>Claim 1: Nonconstancy of Species</h2>
+  <div class="question"><b>Question:</b> How do antibiotic-resistant bacteria evolve?</div>
+  <p>This claim means species aren't fixed or permanent. They change. Bacteria are the best example because they reproduce about every 20 minutes, so you can actually watch evolution happen instead of just guessing about it.</p>
+
+  <div class="ev">
+    <span class="label">Evidence 1</span>
+    <h3>The mutations are already there before the antibiotic</h3>
+    <ul>
+      <li>In a big group of bacteria, a few of them randomly have mutations that happen to make them resistant. Nothing caused these mutations, they're just copying mistakes.</li>
+      <li>This is the part most people get backwards. The antibiotic doesn't <em>create</em> resistance. The resistance was already there in a few cells.</li>
+      <li>Scientists proved this back in 1943 with an experiment where they grew lots of separate bacteria cultures. If exposure caused resistance, every culture would have had about the same number of survivors. Instead the numbers were all over the place, which only makes sense if the mutations happened randomly and at different times before exposure.</li>
+    </ul>
+    <div class="why"><b>Why this supports the claim:</b> Bacteria in a population aren't all identical, they already vary. Variation is what makes change possible in the first place. If every bacterium were exactly the same, nothing could ever shift.</div>
+    <p class="src">Source: Understanding Evolution, UC Berkeley</p>
+  </div>
+
+  <div class="ev">
+    <span class="label">Evidence 2</span>
+    <h3>The antibiotic kills everything else</h3>
+    <ul>
+      <li>When someone takes the antibiotic, the bacteria without the mutation die.</li>
+      <li>The resistant ones survive, and now they have the whole space and food supply to themselves.</li>
+      <li>They reproduce and pass the resistance gene to all their offspring.</li>
+      <li>After a bunch of generations, almost the entire population is resistant. The population changed even though no individual bacterium changed.</li>
+    </ul>
+    <div class="why"><b>Why this supports the claim:</b> The species is measurably different at the end than it was at the start. That's the definition of nonconstancy, and it happened in days.</div>
+    <p class="src">Source: CDC, <em>About Antimicrobial Resistance</em></p>
+  </div>
+
+  <div class="ev">
+    <span class="label">Evidence 3</span>
+    <h3>Superbugs like MRSA are this happening in real life</h3>
+    <ul>
+      <li>Penicillin started being used in the 1940s, and penicillin-resistant staph showed up within a few years.</li>
+      <li>Doctors switched to methicillin in 1960. MRSA (methicillin-resistant <em>Staphylococcus aureus</em>) was found in 1961. That's one year.</li>
+      <li>The CDC says more than 2.8 million antibiotic-resistant infections happen in the US every year and over 35,000 people die from them.</li>
+      <li>There's also drug-resistant tuberculosis that beats both the first-choice and backup drugs.</li>
+    </ul>
+    <div class="why"><b>Why this supports the claim:</b> It's happened over and over with every new drug we've invented, and it's predictable. That's not a coincidence, that's evolution. Species change, and in this case it's a serious medical problem.</div>
+    <p class="src">Source: CDC, <em>Antibiotic Resistance Threats in the United States</em> (2019)</p>
+  </div>
+
+  <!-- VIDEO SLOT: search YouTube for "Harvard Medical School MEGA-plate bacteria evolve".
+       Copy the video ID from the URL (the part after v=) and paste it where VIDEO_ID is. -->
+  <div class="imgbox">
+    <iframe width="100%" height="360" src="https://www.youtube.com/embed/VIDEO_ID"
+      title="Bacteria evolving antibiotic resistance on a giant petri dish"
+      frameborder="0" allowfullscreen></iframe>
+    <p class="cap">Time-lapse of <em>E. coli</em> evolving resistance to 1,000 times the normal lethal dose in about 11 days. Watch for the moment a single mutant breaks into a new band and spreads.</p>
+  </div>
+
+  <details>
+    <summary>Think about it: why do doctors tell you to finish the whole prescription?</summary>
+    <p>If you stop early because you feel better, the bacteria that are left are the ones that were hardest to kill. You've basically run a mini natural selection experiment inside your own body and left the toughest ones alive to reproduce. Finishing the course wipes out the survivors before they can multiply.</p>
+  </details>
+</section>
+
+<!-- ============ CLAIM 2 ============ -->
+<section id="claim2">
+  <h2>Claim 2: Descent From a Common Ancestor</h2>
+  <div class="question"><b>Question:</b> How do fossils and DNA sequencing support this?</div>
+  <p>Darwin said all living things trace back to shared ancestors, like branches on a tree. Fossils and DNA are two completely different ways to check this, and they give the same answer, which makes the evidence a lot stronger.</p>
+
+  <div class="ev">
+    <span class="label">Evidence 1</span>
+    <h3>Transitional fossils</h3>
+    <ul>
+      <li>Transitional fossils have features of two different groups at once. <em>Archaeopteryx</em> has feathers and wings like a bird, but also teeth, claws on its wings, and a long bony tail like a dinosaur.</li>
+      <li>Whales have a fossil series too. <em>Pakicetus</em> walked on land, <em>Ambulocetus</em> was semi-aquatic, and later ones lost their back legs almost completely. You can see the nostrils moving up the skull toward where a blowhole goes.</li>
+      <li>My favorite one is <em>Tiktaalik</em>, because scientists predicted it before they found it. They figured a fish-to-land-animal in-between should be in rocks about 375 million years old, found rocks that age in the Canadian Arctic, dug there, and found a fish with a neck and actual shoulder, elbow, and wrist bones inside its fin.</li>
+    </ul>
+    <div class="why"><b>Why this supports the claim:</b> Being able to predict where a fossil will be and then actually finding it is a big deal. It means the theory isn't just explaining stuff after the fact, it's making predictions that turn out right.</div>
+    <p class="src">Source: PBS NOVA, <em>Your Inner Fish</em>; Natural History Museum (London)</p>
+  </div>
+
+  <!-- IMAGE SLOT: search Wikimedia Commons for "Archaeopteryx Berlin specimen" -->
+  <div class="imgbox">
+    <img src="images/archaeopteryx.jpg" alt="Fossil of Archaeopteryx showing feather impressions, a long bony tail, and clawed wings">
+    <p class="cap">The Berlin <em>Archaeopteryx</em>. You can see feather impressions around the wings, plus the long bony tail and clawed fingers no modern bird has. Image: Wikimedia Commons.</p>
+  </div>
+
+  <div class="ev">
+    <span class="label">Evidence 2</span>
+    <h3>DNA sequencing shows how closely species are related</h3>
+    <ul>
+      <li>Mutations build up over time, so the more differences there are between two species' DNA, the longer ago they split apart.</li>
+      <li>Humans and chimpanzees share about 98.8% of their DNA, which puts our common ancestor around 6 to 7 million years ago. Gorillas are a little further, orangutans further than that.</li>
+      <li>Important thing people mix up: humans did <em>not</em> evolve from chimps. We're both branches coming off a shared ancestor that isn't around anymore.</li>
+      <li>When scientists build family trees using only DNA, they mostly match the trees built from bones and body structure, even though those are totally separate methods.</li>
+    </ul>
+    <div class="why"><b>Why this supports the claim:</b> Darwin had zero access to DNA. The fact that a technology invented 100+ years later builds the same tree he drew from looking at animals is honestly pretty convincing.</div>
+    <p class="src">Source: National Human Genome Research Institute; Smithsonian Human Origins</p>
+  </div>
+
+  <div class="ev">
+    <span class="label">Evidence 3</span>
+    <h3>Every living thing uses the same genetic code</h3>
+    <ul>
+      <li>Bacteria, mushrooms, oak trees, and humans all use the same four DNA bases (A, T, C, G) and the same code for turning DNA into proteins.</li>
+      <li>This is why we can put the human insulin gene into <em>E. coli</em> bacteria and they'll make real human insulin. Almost all insulin for diabetics is made this way. It only works because the code is shared.</li>
+      <li>The strongest version of this is shared broken genes. Most mammals make their own vitamin C, but humans and other primates can't, because the gene for it is broken. And it's broken in the <em>same spot, the same way</em> in all of us.</li>
+    </ul>
+    <div class="why"><b>Why this supports the claim:</b> Two species having the same working gene could maybe be a coincidence. Two species having the identical <em>broken</em> gene isn't a coincidence, it means they both inherited the mistake from the same ancestor.</div>
+    <p class="src">Source: National Human Genome Research Institute; Understanding Evolution, UC Berkeley</p>
+  </div>
+</section>
+
+<!-- ============ CLAIM 3 ============ -->
+<section id="claim3">
+  <h2>Claim 3: Gradual Evolution</h2>
+  <div class="question"><b>Question:</b> What modern examples (finch beak size, dog breeding) illustrate this?</div>
+  <p>Big changes are made of lots of tiny changes stacked up over many generations. Nothing transforms in one jump.</p>
+
+  <div class="ev">
+    <span class="label">Evidence 1</span>
+    <h3>Gal&aacute;pagos finch beaks</h3>
+    <ul>
+      <li>Peter and Rosemary Grant are two scientists who spent 40 years measuring finches on one small island called Daphne Major. They measured basically every bird, down to fractions of a millimeter.</li>
+      <li>In 1977 there was a drought. The small soft seeds ran out first, so only the tough seeds were left. Birds with deeper, stronger beaks could crack them. About 85% of the population died, and the survivors had beaks about 4% deeper than average.</li>
+      <li>Their chicks inherited the bigger beaks. Then in 1983 there was heavy rain, tons of small seeds came back, and beak size shrank again.</li>
+    </ul>
+    <div class="why"><b>Why this supports the claim:</b> A 4% change is way too small to see with your eyes, but it's real and it gets passed down. Repeat that thousands of times and you'd get completely different beaks. That's what gradual means, small steps that add up.</div>
+    <p class="src">Source: Grant &amp; Grant (2002), <em>Science</em>; PBS Evolution</p>
+  </div>
+
+  <!-- IMAGE SLOT: search Wikimedia Commons for "Darwin's finches Gould" -->
+  <div class="imgbox">
+    <img src="images/darwin-finches.jpg" alt="Illustration of four Galapagos finch species showing beaks of very different sizes and shapes">
+    <p class="cap">John Gould's 1845 drawing of four finch species. Same island group, four completely different beak shapes, all from one ancestor. Image: Wikimedia Commons.</p>
+  </div>
+
+  <div class="ev">
+    <span class="label">Evidence 2</span>
+    <h3>Dog breeding (artificial selection)</h3>
+    <ul>
+      <li>Every dog breed, all 350ish of them, came from wolves. Humans have been breeding them for somewhere between 15,000 and 40,000 years, which is nothing compared to geologic time.</li>
+      <li>Just by picking which dogs got to have puppies, people went from wolves to a 2-pound Chihuahua and a 200-pound mastiff.</li>
+      <li>Darwin actually used pigeons for this argument in chapter one of his book. He bred them himself. Fantails and pouters look like totally different birds but they're all rock doves and they can still breed with each other.</li>
+    </ul>
+    <div class="why"><b>Why this supports the claim:</b> This is the version we can prove because humans did it on purpose and wrote it down. Darwin's whole point was: if humans can do this in a few thousand years by choosing, nature can do way more in millions of years, with survival doing the choosing instead of people.</div>
+    <p class="src">Source: American Kennel Club; Darwin, <em>On the Origin of Species</em>, Ch. 1</p>
+  </div>
+
+  <div class="ev">
+    <span class="label">Evidence 3</span>
+    <h3>Peppered moths</h3>
+    <ul>
+      <li>Before factories, peppered moths in England were almost all light colored and speckled, which hid them on tree bark covered in pale lichen.</li>
+      <li>During the Industrial Revolution, soot killed the lichen and turned the trees black. Now the light moths stood out and got eaten by birds, while dark moths blended in. In Manchester the dark form went from super rare to over 90% in about 50 years.</li>
+      <li>Then England passed clean air laws in the 1950s and 60s, pollution dropped, the trees got lighter again, and the light moths came back. It reversed.</li>
+      <li>In 2016 scientists found the actual mutation that makes the dark ones dark. When they dated it, it turned out to have appeared around 1819, before the pollution got bad.</li>
+    </ul>
+    <div class="why"><b>Why this supports the claim:</b> The population shifted little by little as the environment changed, and shifted back when it changed again. Also notice it connects to Claim 1: the mutation existed <em>before</em> the pollution that made it useful. The environment picks from what's already there, it doesn't design anything.</div>
+    <p class="src">Source: van't Hof et al. (2016), <em>Nature</em>; Natural History Museum (London)</p>
+  </div>
+
+  <!-- IMAGE SLOT: search Wikimedia Commons for "Biston betularia typica carbonaria" -->
+  <div class="imgbox">
+    <img src="images/peppered-moths.jpg" alt="A light speckled peppered moth and a dark peppered moth resting on the same tree bark">
+    <p class="cap">Both forms of the peppered moth on the same bark. Whichever one stands out is the one the birds eat. Image: Wikimedia Commons.</p>
+  </div>
+</section>
+
+<!-- ============ CLAIM 4 ============ -->
+<section id="claim4">
+  <h2>Claim 4: Multiplication of Species</h2>
+  <div class="question"><b>Question:</b> How does speciation occur in different environments today?</div>
+  <p>For a branching tree to work, lineages have to split into new species. This happens when two groups of the same species stop breeding with each other, and then drift apart genetically.</p>
+
+  <div class="ev">
+    <span class="label">Evidence 1</span>
+    <h3>Gal&aacute;pagos finches: one species became about 18</h3>
+    <ul>
+      <li>DNA evidence says one finch population blew over from South America roughly 1 to 2 million years ago. Now there are around 18 species.</li>
+      <li>Ocean between the islands kept the groups apart. Each island had different food, so different beaks worked best: thick crushing beaks for hard seeds, thin pointy ones for cactus flowers, and the woodpecker finch even uses a cactus spine as a tool.</li>
+      <li>The Grants caught a split actually starting. In 1981 a finch from a different island showed up on Daphne Major and bred there. Within three generations its descendants had their own song and beak shape and were only breeding with each other. Researchers nicknamed them the "Big Bird" lineage.</li>
+    </ul>
+    <div class="why"><b>Why this supports the claim:</b> Separate the groups, block them from breeding, and they go their own ways until they can't interbreed anymore. And the Big Bird thing shows the early part of this can happen within one scientist's career, not just over millions of years.</div>
+    <p class="src">Source: Lamichhaney et al. (2018), <em>Science</em>; Princeton University news</p>
+  </div>
+
+  <div class="ev">
+    <span class="label">Evidence 2</span>
+    <h3>Cichlid fish in African lakes</h3>
+    <ul>
+      <li>Lake Victoria has around 500 cichlid species that exist nowhere else on Earth. What makes this wild is the lake was mostly dried up only about 15,000 years ago.</li>
+      <li>They split up by job instead of by location. Some scrape algae off rocks, some crush snails, some eat scales off other fish, some steal eggs. Their jaws are shaped for whatever they eat.</li>
+      <li>A lot of the separation comes from females picking mates by color. Some species are reddish, some bluish, and females go for their own type.</li>
+      <li>Here's the sad part: farm runoff made the water cloudy, so females can't see colors properly anymore, and species that used to stay separate have started interbreeding and merging back together.</li>
+    </ul>
+    <div class="why"><b>Why this supports the claim:</b> You don't need a mountain range. Different niches and mate preferences inside one lake are enough to split a species. And the fact that it reverses when the water gets murky proves species boundaries are kept up by real biological processes, not by species being fixed things.</div>
+    <p class="src">Source: Seehausen et al. (2008), <em>Nature</em>; National Geographic</p>
+  </div>
+
+  <div class="ev">
+    <span class="label">Evidence 3</span>
+    <h3>Apple maggot flies, splitting right now</h3>
+    <ul>
+      <li>These flies used to only lay eggs on hawthorn fruit. Then apples got brought to North America, and by the 1860s some flies started using apples instead.</li>
+      <li>The key detail is that these flies mate on the same fruit they lay eggs on. So picking a fruit is also picking who you mate with.</li>
+      <li>Apples ripen earlier than hawthorns, so the two groups are now even breeding at different times of year. They only interbreed a few percent of the time.</li>
+      <li>Scientists can tell the two groups apart genetically now, and the wasps that hunt these flies are starting to split too.</li>
+    </ul>
+    <div class="why"><b>Why this supports the claim:</b> This one is happening right now and we know roughly when it started, which is rare. It also shows the order of events: a behavior change came first, that separated them, and the genetic differences came after.</div>
+    <p class="src">Source: Feder et al. (1988), <em>Nature</em>; Understanding Evolution, UC Berkeley</p>
+  </div>
+</section>
+
+<!-- ============ CLAIM 5 ============ -->
+<section id="claim5">
+  <h2>Claim 5: Natural Selection</h2>
+  <div class="question"><b>Question:</b> How are climate change and environmental pressures shaping species now?</div>
+  <p>Natural selection needs three things: individuals have to vary, the variation has to be heritable, and some individuals have to survive and reproduce more than others. Climate change is basically running this experiment on the entire planet at once.</p>
+
+  <div class="ev">
+    <span class="label">Evidence 1</span>
+    <h3>Animals are shifting their timing, and some can't</h3>
+    <ul>
+      <li>Across more than 1,700 species studied, spring events like migration and breeding are happening about 2.3 days earlier every decade, and species are moving toward the poles.</li>
+      <li>Great tits in England now lay eggs about two weeks earlier than in the 1960s, which keeps them lined up with the caterpillars their chicks eat. Birds that don't shift raise fewer chicks that survive.</li>
+      <li>Pied flycatchers can't adjust, because they start migrating based on day length, and day length doesn't change with temperature. They arrive after the caterpillars are gone. Some of their populations dropped by up to 90%.</li>
+    </ul>
+    <div class="why"><b>Why this supports the claim:</b> Same pressure, opposite results, depending on whether the species had the right variation available. That's an important point: natural selection doesn't save anybody. It just filters what already exists, and if the useful variation isn't there, the population crashes.</div>
+    <p class="src">Source: Parmesan &amp; Yohe (2003), <em>Nature</em>; Both et al. (2006), <em>Nature</em></p>
+  </div>
+
+  <div class="ev">
+    <span class="label">Evidence 2</span>
+    <h3>Coral bleaching</h3>
+    <ul>
+      <li>Corals get most of their food from algae living inside them. If the water gets about 1&ndash;2&deg;C above the normal summer high, the coral kicks out the algae and turns white. That's bleaching, and if it lasts too long the coral dies.</li>
+      <li>Heat tolerance is partly genetic. In one experiment, scientists crossed corals from a hot northern reef with corals from a cooler reef, and the babies were up to 10 times more likely to survive heat stress.</li>
+      <li>There are also corals in naturally hot tide pools in American Samoa that survive temperatures that kill corals from the cooler pool nearby, and it's partly a real genetic difference, not just getting used to it.</li>
+    </ul>
+    <div class="why"><b>Why this supports the claim:</b> Some corals die and some live, based on genes they inherited. That is literally natural selection. The problem is that the ocean is warming faster than corals reproduce, which is why scientists are now trying to move heat-tolerant corals around themselves to speed it up.</div>
+    <p class="src">Source: Dixon et al. (2015), <em>Science</em>; NOAA Coral Reef Watch</p>
+  </div>
+
+  <div class="ev">
+    <span class="label">Evidence 3</span>
+    <h3>Snowshoe hares turning white when there's no snow</h3>
+    <ul>
+      <li>Snowshoe hares turn white every winter for camouflage. But they do it based on day length, and day length isn't changing. Snow cover is.</li>
+      <li>So now you get white hares sitting on brown ground where every predator can see them. Researchers put radio collars on hares and found that each extra week of being the wrong color raised the chance of dying that week by about 7%.</li>
+      <li>Some hare populations already stay brown all winter. Weirdly, that brown-winter gene came from interbreeding with black-tailed jackrabbits a long time ago, so the variation was borrowed from another species.</li>
+    </ul>
+    <div class="why"><b>Why this supports the claim:</b> A trait that used to help is now getting hares killed, purely because the environment changed. Natural selection is now pushing toward brown-winter hares, and we can measure it happening. It also ties back to Claim 2, since the useful gene came from a related species they share ancestry with.</div>
+    <p class="src">Source: Zimova et al. (2016), <em>Ecology Letters</em>; Jones et al. (2018), <em>Science</em></p>
+  </div>
+</section>
+
+<!-- ============ CASE STUDY ============ -->
+<section id="casestudy">
+  <h2>Case Study Spotlight: Camouflage and Mimicry in Urban Wildlife</h2>
+  <div class="question"><b>Real-world issue:</b> Cities are the fastest growing habitat on Earth. What happens to animals that live in them?</div>
+  <p class="intro-p">I picked this one because it's happening in places people actually live, not on a remote island. Cities are a really weird habitat if you're an animal: concrete instead of dirt, lights on all night, constant noise, and roads chopping everything into little pieces. Animals living there are under different pressures than the same species out in the woods, and scientists are finding they're already evolving because of it.</p>
+
+  <div class="ev">
+    <span class="label">Example 1</span>
+    <h3>City pigeons are darker, and it's not just camouflage</h3>
+    <ul>
+      <li>Pigeons come in colors from almost white to almost black. The more urban the area, the more of the dark ones you find.</li>
+      <li>The dark pigment is melanin, and melanin sticks to metals like lead and zinc. Darker pigeons pull those metals into their feathers and then drop them when they molt.</li>
+      <li>So darker city pigeons have less lead in their blood than lighter pigeons living on the same block. They also seem to have fewer parasites.</li>
+    </ul>
+    <div class="why"><b>Connection to Darwin:</b> This is basically the peppered moth again, except the pigment is doing two useful jobs at once, blending in against gray concrete AND handling pollution. When one gene has more than one advantage, natural selection works on it even faster.</div>
+    <p class="src">Source: Chatelain et al. (2016), <em>Global Change Biology</em></p>
+  </div>
+
+  <div class="ev">
+    <span class="label">Example 2</span>
+    <h3>Lizards with better grip for walls</h3>
+    <ul>
+      <li>Crested anole lizards in San Juan, Puerto Rico have longer legs and more of the sticky scales under their toes than the same species living in the forest nearby.</li>
+      <li>That makes sense, because painted concrete, glass, and metal are way smoother and flatter than tree bark, so you need better grip and a longer stride.</li>
+      <li>Scientists raised babies from both groups in identical lab conditions and the differences stayed, which means it's genetic, not just from growing up on different surfaces.</li>
+      <li>When they checked lizards in three different cities, the same parts of the genome had changed in all three.</li>
+    </ul>
+    <div class="why"><b>Connection to Darwin:</b> Three separate populations in three separate cities landing on the same genetic solution is really strong evidence. If it were random you wouldn't get the same answer three times.</div>
+    <p class="src">Source: Winchell et al. (2016), <em>Evolution</em></p>
+  </div>
+
+  <div class="ev">
+    <span class="label">Example 3</span>
+    <h3>Mimicry, but the models are now car alarms</h3>
+    <ul>
+      <li>Mockingbirds and starlings copy sounds they hear. City ones now copy car alarms, backup beepers, sirens, and phone ringtones mixed in with actual bird songs.</li>
+      <li>For these birds, having a bigger song collection helps attract mates, so a bird that picks up a bunch of new city sounds might actually do better.</li>
+      <li>Regular visual mimicry still works in cities too. Hoverflies that are striped like wasps are still common in city gardens, because the birds that avoid stinging insects are still around.</li>
+    </ul>
+    <div class="why"><b>Connection to Darwin:</b> Mimicry needs three parts: the copycat, the thing being copied, and whoever's being fooled. Cities changed the sounds around but didn't remove the audience, so the system just re-aimed at new targets. Evolution has no goal, it just follows whatever pays off right now.</div>
+    <p class="src">Source: Gammon (2014), <em>Wilson Journal of Ornithology</em>; Cornell Lab of Ornithology</p>
+  </div>
+
+  <div class="ev">
+    <span class="label">Example 4</span>
+    <h3>City parks are basically islands</h3>
+    <ul>
+      <li>White-footed mice in New York City parks are genetically different from park to park. Roads and buildings block them from moving around just as well as ocean blocks a finch.</li>
+      <li>When scientists scanned their genomes, the genes under the most selection were ones for digesting food (they eat a lot of human trash) and for immune response (new city diseases).</li>
+      <li>Each park is turning into its own separate little gene pool.</li>
+    </ul>
+    <div class="why"><b>Connection to Darwin:</b> This is the Gal&aacute;pagos pattern but made out of asphalt. It's kind of ironic, cities cause a lot of extinctions but they're also creating brand new isolated populations that are starting to diverge.</div>
+    <p class="src">Source: Harris &amp; Munshi-South (2017), <em>Molecular Ecology</em></p>
+  </div>
+
+  <h3 class="subhead">All five claims in one case study</h3>
+  <div class="cards">
+    <div class="card"><h4>1. Species change</h4><ul><li>City pigeons, lizards, and mice are already measurably different from their rural relatives.</li><li>None of these differences existed before the cities did.</li></ul></div>
+    <div class="card"><h4>2. Common ancestor</h4><ul><li>City and forest anoles are still the same species with a recent shared ancestor.</li><li>DNA can show exactly which parts have changed since they split.</li></ul></div>
+    <div class="card"><h4>3. Gradual change</h4><ul><li>No single generation looks different. Leg length shifts a few percent at a time.</li><li>Over decades those small shifts pile up into something you can measure.</li></ul></div>
+    <div class="card"><h4>4. New species</h4><ul><li>Roads already block gene flow between park populations.</li><li>If they stay separated long enough, some could eventually become separate species.</li></ul></div>
+    <div class="card"><h4>5. Natural selection</h4><ul><li>Predators eat the ones that stand out. Lead poisons the pale pigeons.</li><li>Lizards with worse grip fall more. Survivors pass on their genes.</li></ul></div>
+  </div>
+
+  <details>
+    <summary>Why does this actually matter?</summary>
+    <p>It changes how we should do conservation. If cities are causing evolution, then wildlife corridors between parks aren't just about letting animals walk around, they're about keeping populations connected so they don't lose the genetic variation that natural selection needs to work with. It's the same logic as antibiotics: if you understand what pressure you're putting on a population, you can predict what it'll turn into. Darwin's claims aren't just history, they're a tool people use to make decisions about hospitals, farms, fisheries, and cities.</p>
+  </details>
+</section>
+
+<!-- ============ CLASSIFICATION ============ -->
+<section id="classification">
+  <h2>Model for Domain Classification</h2>
+  <div class="question"><b>Question:</b> How do new species get classified today, and how has taxonomy changed with genetic technology?</div>
+  <p>Linnaeus sorted living things by what they looked like. Now scientists sort them by who they're related to. When those two things disagree, relatedness wins, and that's a direct result of Darwin's second claim.</p>
+
+  <h3 class="subhead">The three domains</h3>
+  <div class="cards">
+    <div class="card">
+      <h4>Bacteria</h4>
+      <ul>
+        <li>No nucleus (prokaryotic)</li>
+        <li>Cell wall made of peptidoglycan</li>
+        <li>Ester-linked, straight membrane lipids</li>
+        <li>Includes most germs, and the target of every antibiotic in Claim 1</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Archaea</h4>
+      <ul>
+        <li>No nucleus (prokaryotic)</li>
+        <li>No peptidoglycan in the wall</li>
+        <li>Ether-linked, branched membrane lipids (more heat and acid proof)</li>
+        <li>Live in hot springs, super salty lakes, and also your gut</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Eukarya</h4>
+      <ul>
+        <li>Has a real nucleus and organelles</li>
+        <li>Includes protists, fungi, plants, and animals</li>
+        <li>Mitochondria and chloroplasts came from bacteria that got swallowed</li>
+        <li>Genetically closer to Archaea than to Bacteria</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="diagram">
+    <svg viewBox="0 0 560 210" role="img" aria-label="Tree diagram showing the last universal common ancestor splitting into Bacteria, and then Archaea and Eukarya">
+      <g stroke="currentColor" stroke-width="2" fill="none">
+        <line x1="280" y1="188" x2="280" y2="152"/>
+        <line x1="120" y1="152" x2="400" y2="152"/>
+        <line x1="120" y1="152" x2="120" y2="60"/>
+        <line x1="400" y1="152" x2="400" y2="112"/>
+        <line x1="330" y1="112" x2="460" y2="112"/>
+        <line x1="330" y1="112" x2="330" y2="60"/>
+        <line x1="460" y1="112" x2="460" y2="60"/>
+      </g>
+      <g font-family="Trebuchet MS, sans-serif" font-size="13" fill="currentColor" text-anchor="middle">
+        <text x="120" y="48">Bacteria</text>
+        <text x="330" y="48">Archaea</text>
+        <text x="460" y="48">Eukarya</text>
+        <text x="280" y="205" font-size="12" opacity=".8">Last universal common ancestor</text>
+      </g>
+      <text x="410" y="136" font-family="Trebuchet MS, sans-serif" font-size="11" fill="currentColor" opacity=".75" text-anchor="middle">these two split later</text>
+    </svg>
+    <p class="cap">Notice that Archaea and Eukarya branch off from each other <em>after</em> Bacteria splits off. That means archaea are more closely related to us than they are to bacteria, even though under a microscope archaea look exactly like bacteria. This is why "prokaryote" isn't really a real group.</p>
+  </div>
+
+  <h3 class="subhead">How taxonomy changed</h3>
+  <ul>
+    <li><strong>1735 &mdash; Linnaeus:</strong> two kingdoms, plants and animals, sorted by what you can see.</li>
+    <li><strong>1969 &mdash; Whittaker:</strong> five kingdoms, adding fungi, protists, and monera. Still mostly based on appearance and how things get food.</li>
+    <li><strong>1977 &mdash; Carl Woese:</strong> instead of looking at organisms, he compared their ribosomal RNA sequences. He found that some "bacteria" were as different from other bacteria as bacteria are from humans. That forced scientists to add a whole new level above kingdom called the domain.</li>
+  </ul>
+  <p style="margin-top:12px">A lot of scientists pushed back on Woese for years because it contradicted what microscopes showed. He was right anyway, because classification is supposed to show ancestry, not just looks.</p>
+
+  <h3 class="subhead">How a new species gets classified today</h3>
+  <ol class="steps">
+    <li><strong>Collect and describe it.</strong> Write down what it looks like, where it lives, and how it behaves. Then put a physical "type specimen" in a museum so other scientists can check your work later.</li>
+    <li><strong>DNA barcoding.</strong> Sequence one standard gene (COI for animals, rbcL for plants, ITS for fungi, 16S for bacteria and archaea) and compare it to a giant database. If it doesn't closely match anything, it might be new.</li>
+    <li><strong>Build a family tree.</strong> Use several genes or the whole genome to figure out where it actually branches. This step often reveals that something people thought was one species is secretly several, or that a whole genus isn't a real group.</li>
+    <li><strong>Check it multiple ways.</strong> Combine the genetics with ecology, geography, and whether it can breed with relatives. Scientists don't just use the "can they have fertile offspring" rule anymore, because that doesn't work for bacteria or fossils.</li>
+    <li><strong>Publish it officially.</strong> Follow the international naming rules, give it a two-part Latin name, get peer reviewed, and upload the DNA sequences publicly so anyone can double-check.</li>
+  </ol>
+
+  <details>
+    <summary>Two things that make this harder than it sounds</summary>
+    <p><strong>Bacteria swap genes sideways.</strong> They trade DNA with completely unrelated bacteria, which is actually how antibiotic resistance spreads between species. So for microbes the "tree" is more like a web, and Darwin's branching diagram is a simplification down at that level.</p>
+    <p><strong>The three domains might be two.</strong> In 2015 scientists found Asgard archaea, which have a bunch of genes people thought only eukaryotes had. Some researchers now think Eukarya belongs <em>inside</em> Archaea, which would mean two domains instead of three. The fact that the top of the whole system is still being argued about isn't a weakness, it's how science is supposed to work.</p>
+  </details>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section id="quiz">
+  <h2>Quick Quiz</h2>
+  <p>Five questions on the things people most often get wrong. Click an answer to check it.</p>
+  <div id="quizBox" style="margin-top:22px"></div>
+  <p class="score" id="score">Answered 0 of 5.</p>
+</section>
+
+<!-- ============ SOURCES ============ -->
+<section id="sources">
+  <h2>Sources</h2>
+  <p>I used the Stanford Web Credibility guidelines to check these. I looked for named authors, real institutions like universities, museums, and government agencies, and studies that other scientists had cited.</p>
+  <ol class="bib">
+    <li>Centers for Disease Control and Prevention. <em>Antibiotic Resistance Threats in the United States, 2019.</em> U.S. Department of Health and Human Services.</li>
+    <li>Understanding Evolution. University of California Museum of Paleontology, Berkeley. evolution.berkeley.edu</li>
+    <li>Daeschler, E., Shubin, N. &amp; Jenkins, F. (2006). A Devonian tetrapod-like fish and the evolution of the tetrapod body plan. <em>Nature</em>, 440, 757&ndash;763.</li>
+    <li>PBS NOVA. <em>Your Inner Fish</em> (2014), based on the book by Neil Shubin.</li>
+    <li>National Human Genome Research Institute. "Comparative Genomics Fact Sheet." genome.gov</li>
+    <li>Smithsonian National Museum of Natural History. "Human Family Tree." humanorigins.si.edu</li>
+    <li>Grant, P. R. &amp; Grant, B. R. (2002). Unpredictable evolution in a 30-year study of Darwin's finches. <em>Science</em>, 296, 707&ndash;711.</li>
+    <li>Lamichhaney, S. et al. (2018). Rapid hybrid speciation in Darwin's finches. <em>Science</em>, 359, 224&ndash;228.</li>
+    <li>van't Hof, A. et al. (2016). The industrial melanism mutation in British peppered moths is a transposable element. <em>Nature</em>, 534, 102&ndash;105.</li>
+    <li>Natural History Museum, London. "Peppered moths and industrial melanism." nhm.ac.uk</li>
+    <li>Seehausen, O. et al. (2008). Speciation through sensory drive in cichlid fish. <em>Nature</em>, 455, 620&ndash;626.</li>
+    <li>Feder, J., Chilcote, C. &amp; Bush, G. (1988). Genetic differentiation between sympatric host races of the apple maggot fly. <em>Nature</em>, 336, 61&ndash;64.</li>
+    <li>Parmesan, C. &amp; Yohe, G. (2003). A globally coherent fingerprint of climate change impacts across natural systems. <em>Nature</em>, 421, 37&ndash;42.</li>
+    <li>Both, C. et al. (2006). Climate change and population declines in a long-distance migratory bird. <em>Nature</em>, 441, 81&ndash;83.</li>
+    <li>Dixon, G. et al. (2015). Genomic determinants of coral heat tolerance across latitudes. <em>Science</em>, 348, 1460&ndash;1462.</li>
+    <li>NOAA Coral Reef Watch. "Coral Bleaching." coralreefwatch.noaa.gov</li>
+    <li>Zimova, M., Mills, L. S. &amp; Nowak, J. (2016). High fitness costs of climate change-induced camouflage mismatch. <em>Ecology Letters</em>, 19, 299&ndash;307.</li>
+    <li>Jones, M. et al. (2018). Adaptive introgression underlies polymorphic seasonal camouflage in snowshoe hares. <em>Science</em>, 360, 1355&ndash;1358.</li>
+    <li>Chatelain, M., Gasparini, J. &amp; Frantz, A. (2016). Do trace metals select for darker birds in urban areas? <em>Global Change Biology</em>, 22, 2380&ndash;2391.</li>
+    <li>Winchell, K. et al. (2016). Phenotypic shifts in urban areas in the tropical lizard <em>Anolis cristatellus</em>. <em>Evolution</em>, 70, 1009&ndash;1022.</li>
+    <li>Harris, S. &amp; Munshi-South, J. (2017). Signatures of positive selection and local adaptation to urbanization in white-footed mice. <em>Molecular Ecology</em>, 26, 6336&ndash;6350.</li>
+    <li>Gammon, D. (2014). Seasonal patterns of vocal mimicry in Northern Mockingbirds. <em>Wilson Journal of Ornithology</em>.</li>
+    <li>Woese, C., Kandler, O. &amp; Wheelis, M. (1990). Towards a natural system of organisms: proposal for the domains Archaea, Bacteria, and Eucarya. <em>PNAS</em>, 87, 4576&ndash;4579.</li>
+    <li>Hebert, P. et al. (2003). Biological identifications through DNA barcodes. <em>Proceedings of the Royal Society B</em>, 270, 313&ndash;321.</li>
+    <li>Spang, A. et al. (2015). Complex archaea that bridge the gap between prokaryotes and eukaryotes. <em>Nature</em>, 521, 173&ndash;179.</li>
+    <li>Darwin, C. (1859). <em>On the Origin of Species by Means of Natural Selection.</em> John Murray, London.</li>
+  </ol>
+</section>
+
+</div>
+
+<footer>
+  <div class="container">
+    <p>Darwin's Evolutionary Impact &mdash; Digital Exhibit &middot; Biology, Summer 2026</p>
+  </div>
+</footer>
+
+<script>
+var questions = [
+  {
+    q: "1. A patient takes antibiotics, and the bacteria that survive are all resistant. What happened?",
+    options: [
+      "The antibiotic caused the bacteria to mutate and become resistant",
+      "A few resistant bacteria already existed, and the antibiotic killed all the rest",
+      "The bacteria adapted on purpose because they needed to survive"
+    ],
+    correct: 1,
+    explain: "The mutations were already there before the antibiotic showed up. The antibiotic is a filter, not a cause. This is probably the most common misunderstanding about evolution."
+  },
+  {
+    q: "2. Humans and chimps share about 98.8% of their DNA. What does that show?",
+    options: [
+      "Humans evolved from modern chimpanzees",
+      "It's a coincidence, since both are mammals",
+      "Both species came from a shared ancestor around 6 to 7 million years ago"
+    ],
+    correct: 2,
+    explain: "Neither one came from the other. They're two branches off the same ancestor, and how different the DNA is tells you roughly when they split."
+  },
+  {
+    q: "3. What discovery would most seriously disprove common ancestry?",
+    options: [
+      "A rabbit fossil in Precambrian rock, hundreds of millions of years too early",
+      "An animal with a really complicated eye",
+      "Two unrelated species that look almost the same"
+    ],
+    correct: 0,
+    explain: "Complicated organs and look-alike species are both expected under evolution. A mammal in Precambrian rock would break the whole order of the tree. A scientist named J.B.S. Haldane famously gave this exact answer."
+  },
+  {
+    q: "4. Apple maggot flies are splitting into two groups with no mountain or river separating them. How?",
+    options: [
+      "They can't, speciation always needs a physical barrier",
+      "They mate on the same fruit they lay eggs on, so picking a fruit separates them",
+      "They decided to become a new species"
+    ],
+    correct: 1,
+    explain: "Behavior is doing the job geography usually does. Apples and hawthorns also ripen at different times, so the two groups barely even breed at the same time of year."
+  },
+  {
+    q: "5. Why did the three-domain system replace the five-kingdom system?",
+    options: [
+      "Better microscopes showed new structures nobody had seen",
+      "RNA sequencing showed archaea are as different from bacteria as bacteria are from us",
+      "Scientists wanted a simpler system with fewer groups"
+    ],
+    correct: 1,
+    explain: "Archaea and bacteria look basically identical under a microscope. Only the genetic sequences showed the split, which is exactly why classification now follows ancestry instead of appearance."
+  }
+];
+
+var box = document.getElementById("quizBox");
+var scoreEl = document.getElementById("score");
+var answered = 0, right = 0;
+
+questions.forEach(function(item){
+  var div = document.createElement("div");
+  div.className = "q";
+  var done = false;
+
+  var text = document.createElement("p");
+  text.className = "qtext";
+  text.textContent = item.q;
+  div.appendChild(text);
+
+  var answer = document.createElement("p");
+  answer.className = "answer";
+
+  item.options.forEach(function(option, i){
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.textContent = option;
+    btn.onclick = function(){
+      var all = div.getElementsByTagName("button");
+      for (var j = 0; j < all.length; j++){ all[j].className = ""; }
+
+      if (!done){
+        done = true;
+        answered++;
+        if (i === item.correct) right++;
+      }
+
+      if (i === item.correct){
+        btn.className = "correct";
+        answer.textContent = "Correct! " + item.explain;
+      } else {
+        btn.className = "incorrect";
+        all[item.correct].className = "correct";
+        answer.textContent = "Not quite. " + item.explain;
+      }
+
+      scoreEl.textContent = "Answered " + answered + " of 5. Got " +
+        right + " right on the first try.";
+    };
+    div.appendChild(btn);
+  });
+
+  div.appendChild(answer);
+  box.appendChild(div);
+});
+</script>
+
+</body>
+</html>
